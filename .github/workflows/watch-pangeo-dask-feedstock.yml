@@ -19,6 +19,8 @@ jobs:
 
       - name: Setup Micromamba
         uses: mamba-org/provision-with-micromamba@v15
+        with:
+          environment-file: false
         
       - name: Mamba Repoquery
         run: mamba repoquery search pangeo-dask --json | jq '.result.pkgs[0].version'
