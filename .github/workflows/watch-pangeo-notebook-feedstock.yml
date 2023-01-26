@@ -31,15 +31,15 @@ jobs:
           environment-file: false
         
       # Until https://github.com/pangeo-bot/dispatcher/issues/7 fixed
-      - name: Get latest Dask
-        id: latest_version_dask
+      - name: Get latest Pangeo-dask
+        id: latest_version_pangeodask
         run: | 
-          VERSION=`micromamba repoquery search dask -c conda-forge --json | jq '.result.pkgs[0].version'`
+          VERSION=`micromamba repoquery search pangeo-dask -c conda-forge --json | jq '.result.pkgs[0].version'`
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Find and Replace pangeo-dask
         id: pangeodask
-        uses: jacobtomlinson/gha-find-replace@2
+        uses: jacobtomlinson/gha-find-replace@v2
         with:
           include: "meta.yaml"
           find: "pangeo-dask =.*"
@@ -54,7 +54,7 @@ jobs:
 
       - name: Find and Replace dask-labextension
         id: labextension
-        uses: jacobtomlinson/gha-find-replace@2
+        uses: jacobtomlinson/gha-find-replace@v2
         with:
           include: "meta.yaml"
           find: "dask-labextension =.*"
@@ -69,7 +69,7 @@ jobs:
 
       - name: Find and Replace ipywidgets
         id: ipywidgets
-        uses: jacobtomlinson/gha-find-replace@2
+        uses: jacobtomlinson/gha-find-replace@v2
         with:
           include: "meta.yaml"
           find: "ipywidgets =.*"
@@ -84,7 +84,7 @@ jobs:
 
       - name: Find and Replace jupyter-server-proxy
         id: server_proxy
-        uses: jacobtomlinson/gha-find-replace@2
+        uses: jacobtomlinson/gha-find-replace@v2
         with:
           include: "meta.yaml"
           find: "jupyter-server-proxy =.*"
@@ -99,7 +99,7 @@ jobs:
 
       - name: Find and Replace jupyterhub-singleuser
         id: jupyterhub_singleuser
-        uses: jacobtomlinson/gha-find-replace@2
+        uses: jacobtomlinson/gha-find-replace@v2
         with:
           include: "meta.yaml"
           find: "jupyterhub-singleuser =.*"
@@ -114,7 +114,7 @@ jobs:
 
       - name: Find and Replace jupyterlab
         id: jupyterlab
-        uses: jacobtomlinson/gha-find-replace@2
+        uses: jacobtomlinson/gha-find-replace@v2
         with:
           include: "meta.yaml"
           find: "jupyterlab =.*"
@@ -129,7 +129,7 @@ jobs:
 
       - name: Find and Replace nbgitpuller
         id: nbgitpuller
-        uses: jacobtomlinson/gha-find-replace@2
+        uses: jacobtomlinson/gha-find-replace@v2
         with:
           include: "meta.yaml"
           find: "nbgitpuller =.*"
@@ -144,7 +144,7 @@ jobs:
           steps.jupyterlab.outputs.modifiedFiles > 0 || 
           steps.pangeodask.outputs.modifiedFiles > 0 || 
           steps.nbgitpuller.outputs.modifiedFiles > 0
-        uses: jacobtomlinson/gha-find-replace@2
+        uses: jacobtomlinson/gha-find-replace@v2
         with:
           include: "meta.yaml"
           find: "{% set version = \".*\" %}"
@@ -172,4 +172,4 @@ jobs:
                 -  nbgitpuller -> `${{ steps.latest_version_nbgitpuller.outputs.version }}`
 
       - name: Keep scheduled jobs alive
-        uses: gautamkrishnar/keepalive-workflow@1
+        uses: gautamkrishnar/keepalive-workflow@v1
