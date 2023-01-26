@@ -9,7 +9,10 @@ on:
 jobs:
   check-version:
     runs-on: ubuntu-latest
-
+    defaults:
+      run:
+        shell: bash -el {0}
+        
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -24,7 +27,6 @@ jobs:
         
       - name: Mamba Repoquery
         run: | 
-          jq --version
           micromamba repoquery search pangeo-dask --json | jq '.result.pkgs[0].version'
 
       - name: calver
