@@ -26,19 +26,21 @@ jobs:
           environment-file: false
         
       - name: Mamba Repoquery
+        id: latest_version_dask
         run: | 
-          micromamba repoquery search pangeo-dask --json | jq '.result.pkgs[0].version'
+          VERSION=`micromamba repoquery search pangeo-dask -c conda-forge --json | jq '.result.pkgs[0].version'`
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: calver
         id: calver
         run: echo "::set-output name=version::$(date +'%Y.%m.%d')"
 
-      - name: Get latest dask version
-        id: latest_version_dask
-        uses: jacobtomlinson/gha-anaconda-package-version@0.1.3
-        with:
-          org: "conda-forge"
-          package: "dask"
+#       - name: Get latest dask version
+#         id: latest_version_dask
+#         uses: jacobtomlinson/gha-anaconda-package-version@0.1.3
+#         with:
+#           org: "conda-forge"
+#           package: "dask"
 
       - name: Find and Replace Dask
         id: dask
@@ -89,25 +91,25 @@ jobs:
           find: "{% set version = \".*\" %}"
           replace: "{% set version = \"${{ steps.calver.outputs.version }}\" %}"
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          commit-message: "Update pangeo-dask metapackage version(s)"
-          title: "Update pangeo-dask metapackage version(s)"
-          branch: "upgrade-dask-versions"
-          token: ${{ secrets.PAT }}
-          push-to-fork: pangeo-bot/pangeo-dask-feedstock
-          body: |
-            It is very likely that one or more of the packages in this metapackage are out of date.
-            https://github.com/pangeo-bot/dispatcher
+#       - name: Create Pull Request
+#         uses: peter-evans/create-pull-request@v3
+#         with:
+#           commit-message: "Update pangeo-dask metapackage version(s)"
+#           title: "Update pangeo-dask metapackage version(s)"
+#           branch: "upgrade-dask-versions"
+#           token: ${{ secrets.PAT }}
+#           push-to-fork: pangeo-bot/pangeo-dask-feedstock
+#           body: |
+#             It is very likely that one or more of the packages in this metapackage are out of date.
+#             https://github.com/pangeo-bot/dispatcher
 
-            This PR updating one or more the following packages:
-                -  dask =`${{ steps.latest_version_dask.outputs.version }}`
-                -  distributed =`${{ steps.latest_version_distributed.outputs.version }}`
-                -  dask-gateway =`${{ steps.latest_version_gateway.outputs.version }}`
+#             This PR updating one or more the following packages:
+#                 -  dask =`${{ steps.latest_version_dask.outputs.version }}`
+#                 -  distributed =`${{ steps.latest_version_distributed.outputs.version }}`
+#                 -  dask-gateway =`${{ steps.latest_version_gateway.outputs.version }}`
 
-      - name: Keep scheduled jobs alive
-        uses: gautamkrishnar/keepalive-workflow@1.0.5
-        with:
-          committer_username: "github-actions[bot]"
-          committer_email: "41898282+github-actions[bot]@users.noreply.github.com"
+#       - name: Keep scheduled jobs alive
+#         uses: gautamkrishnar/keepalive-workflow@1.0.5
+#         with:
+#           committer_username: "github-actions[bot]"
+#           committer_email: "41898282+github-actions[bot]@users.noreply.github.com"
