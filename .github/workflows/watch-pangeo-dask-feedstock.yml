@@ -33,7 +33,7 @@ jobs:
       - name: Get latest Dask
         id: latest_version_dask
         run: | 
-          VERSION=`micromamba repoquery search pangeo-dask -c conda-forge --json | jq '.result.pkgs[0].version'`
+          VERSION=`micromamba repoquery search dask -c conda-forge --json | jq '.result.pkgs[0].version'`
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Find and Replace Dask
