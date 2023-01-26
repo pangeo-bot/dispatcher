@@ -23,7 +23,9 @@ jobs:
           environment-file: false
         
       - name: Mamba Repoquery
-        run: mamba repoquery search pangeo-dask --json | jq '.result.pkgs[0].version'
+        run: | 
+          jq --version
+          micromamba repoquery search pangeo-dask --json | jq '.result.pkgs[0].version'
 
       - name: calver
         id: calver
