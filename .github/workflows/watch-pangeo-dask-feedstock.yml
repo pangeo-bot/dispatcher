@@ -44,7 +44,7 @@ jobs:
 
       - name: Find and Replace Dask
         id: dask
-        uses: jacobtomlinson/gha-find-replace@main
+        uses: jacobtomlinson/gha-find-replace@HEAD
         with:
           include: "meta.yaml"
           find: "dask =.*"
