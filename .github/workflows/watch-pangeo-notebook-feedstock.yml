@@ -22,7 +22,7 @@ jobs:
           ref: 'main'
           
       - name: Show meta.yml
-        run: echo ./recipe/meta.yaml
+        run: cat ./recipe/meta.yaml
           
       - name: Get Todays Date
         id: calver
@@ -59,7 +59,7 @@ jobs:
         id: labextension
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          include: "meta.yaml"
+          include: "recipe/meta.yaml"
           find: "dask-labextension =.*"
           replace: "dask-labextension =${{ steps.latest_version_labext.outputs.version }}"
 
@@ -74,7 +74,7 @@ jobs:
         id: ipywidgets
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          include: "meta.yaml"
+          include: "recipe/meta.yaml"
           find: "ipywidgets =.*"
           replace: "ipywidgets =${{ steps.latest_version_ipywidgets.outputs.version }}"
 
@@ -89,7 +89,7 @@ jobs:
         id: server_proxy
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          include: "meta.yaml"
+          include: "recipe/meta.yaml"
           find: "jupyter-server-proxy =.*"
           replace: "jupyter-server-proxy =${{ steps.latest_version_server_proxy.outputs.version }}"
 
@@ -104,7 +104,7 @@ jobs:
         id: jupyterhub_singleuser
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          include: "meta.yaml"
+          include: "recipe/meta.yaml"
           find: "jupyterhub-singleuser =.*"
           replace: "jupyterhub-singleuser =${{ steps.latest_version_jupyterhub_singleuser.outputs.version }}"
 
@@ -119,7 +119,7 @@ jobs:
         id: jupyterlab
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          include: "meta.yaml"
+          include: "recipe/meta.yaml"
           find: "jupyterlab =.*"
           replace: "jupyterlab =${{ steps.latest_version_jupyterlab.outputs.version }}"
 
@@ -134,7 +134,7 @@ jobs:
         id: nbgitpuller
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          include: "meta.yaml"
+          include: "recipe/meta.yaml"
           find: "nbgitpuller =.*"
           replace: "nbgitpuller =${{ steps.latest_version_nbgitpuller.outputs.version }}"
 
@@ -149,7 +149,7 @@ jobs:
           steps.nbgitpuller.outputs.modifiedFiles > 0
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          include: "meta.yaml"
+          include: "recipe/meta.yaml"
           find: "{% set version = \".*\" %}"
           replace: "{% set version = \"${{ steps.calver.outputs.version }}\" %}"
 
