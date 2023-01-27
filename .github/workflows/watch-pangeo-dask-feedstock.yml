@@ -35,7 +35,7 @@ jobs:
         id: dask
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          include: "meta.yaml"
+          include: "recipe/meta.yaml"
           find: "dask =.*"
           replace: "dask =${{ steps.latest_version_dask.outputs.version }}"
 
@@ -50,7 +50,7 @@ jobs:
         id: distributed
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          include: "meta.yaml"
+          include: "recipe/meta.yaml"
           find: "distributed =.*"
           replace: "distributed =${{ steps.latest_version_distributed.outputs.version }}"
 
@@ -65,7 +65,7 @@ jobs:
         id: gateway
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          include: "meta.yaml"
+          include: "recipe/meta.yaml"
           find: "dask-gateway =.*"
           replace: "dask-gateway =${{ steps.latest_version_gateway.outputs.version }}"
 
@@ -76,7 +76,7 @@ jobs:
           steps.gateway.outputs.modifiedFiles > 0
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          include: "meta.yaml"
+          include: "recipe/meta.yaml"
           find: "{% set version = \".*\" %}"
           replace: "{% set version = \"${{ steps.calver.outputs.version }}\" %}"
 
