@@ -21,6 +21,9 @@ jobs:
           repository: 'conda-forge/pangeo-notebook-feedstock'
           ref: 'main'
           
+      - name: Show meta.yml
+        run: echo ./recipe/meta.yaml
+          
       - name: Get Todays Date
         id: calver
         run: echo "::set-output name=version::$(date +'%Y.%m.%d')"
@@ -41,7 +44,7 @@ jobs:
         id: pangeodask
         uses: jacobtomlinson/gha-find-replace@v2
         with:
-          include: "meta.yaml"
+          include: "recipe/meta.yaml"
           find: "pangeo-dask =.*"
           replace: "pangeo-dask =${{ steps.latest_version_pangeodask.outputs.version }}"
 
