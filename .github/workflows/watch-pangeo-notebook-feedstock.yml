@@ -37,7 +37,7 @@ jobs:
       - name: Get latest Pangeo-dask
         id: latest_version_pangeodask
         run: | 
-          VERSION=`micromamba repoquery search pangeo-dask -c conda-forge --json | jq '.result.pkgs[0].version'`
+          VERSION=`micromamba repoquery search pangeo-dask -c conda-forge --json | jq -r '.result.pkgs[0].version'`
           echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Find and Replace pangeo-dask
