@@ -41,7 +41,7 @@ jobs:
 
       - name: Get latest distributed version
         id: latest_version_distributed
-        uses: jacobtomlinson/gha-anaconda-package-version@0.1.3
+        uses: scottyhq/gha-anaconda-package-version@master
         with:
           org: "conda-forge"
           package: "distributed"
