@@ -29,7 +29,7 @@ jobs:
         run: echo "::set-output name=version::$(date +'%Y.%m.%d')"
 
       - name: Setup Micromamba
-        uses: mamba-org/provision-with-micromamba@v15
+        uses: mamba-org/provision-with-micromamba@v16
         with:
           environment-file: false
         
