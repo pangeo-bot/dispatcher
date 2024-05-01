@@ -33,7 +33,7 @@ jobs:
 
       - name: Find and Replace Dask
         id: dask
-        uses: jacobtomlinson/gha-find-replace@v2
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
           include: "recipe/meta.yaml"
           find: "dask =.*"
@@ -48,7 +48,7 @@ jobs:
 
       - name: Find and Replace Distributed
         id: distributed
-        uses: jacobtomlinson/gha-find-replace@v2
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
           include: "recipe/meta.yaml"
           find: "distributed =.*"
@@ -63,7 +63,7 @@ jobs:
 
       - name: Find and Replace Dask-Gateway
         id: gateway
-        uses: jacobtomlinson/gha-find-replace@v2
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
           include: "recipe/meta.yaml"
           find: "dask-gateway =.*"
@@ -74,7 +74,7 @@ jobs:
           steps.dask.outputs.modifiedFiles > 0 || 
           steps.distributed.outputs.modifiedFiles > 0 || 
           steps.gateway.outputs.modifiedFiles > 0
-        uses: jacobtomlinson/gha-find-replace@v2
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
           include: "recipe/meta.yaml"
           find: "{% set version = \".*\" %}"
