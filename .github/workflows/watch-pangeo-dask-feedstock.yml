@@ -98,4 +98,4 @@ jobs:
                 -  dask-gateway =`${{ steps.latest_version_gateway.outputs.version }}`
 
       - name: Keep scheduled jobs alive
-        uses: gautamkrishnar/keepalive-workflow@v1
+        uses: gautamkrishnar/keepalive-workflow@v2
