@@ -175,4 +175,4 @@ jobs:
                 -  nbgitpuller -> `${{ steps.latest_version_nbgitpuller.outputs.version }}`
 
       - name: Keep scheduled jobs alive
-        uses: gautamkrishnar/keepalive-workflow@v1
+        uses: gautamkrishnar/keepalive-workflow@v2
