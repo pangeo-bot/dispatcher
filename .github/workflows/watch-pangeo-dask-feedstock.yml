@@ -81,7 +81,7 @@ jobs:
           replace: "{% set version = \"${{ steps.calver.outputs.version }}\" %}"
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "Update pangeo-dask metapackage version(s)"
           title: "Update pangeo-dask metapackage version(s)"
