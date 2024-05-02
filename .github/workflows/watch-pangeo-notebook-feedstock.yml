@@ -30,15 +30,23 @@ jobs:
         
       # Until https://github.com/pangeo-bot/dispatcher/issues/7 fixed
       # - name: Setup Micromamba
-      #   uses: mamba-org/provision-with-micromamba@v16
+      #   uses: mamba-org/setup-micromamba@v1
       #   with:
-      #     environment-file: false
+      #     environment-file: environment.yml
+      #     cache-environment: true
           
       # - name: Get latest Pangeo-dask
       #   id: latest_version_pangeodask
       #   run: | 
       #     VERSION=`micromamba repoquery search pangeo-dask -c conda-forge --json | jq -r '.result.pkgs[0].version'`
       #     echo "version=$VERSION" >> $GITHUB_OUTPUT
+      
+      - name: Get latest dask-labextension version
+        id: latest_version_pangeodask
+        uses: jacobtomlinson/gha-anaconda-package-version@0.1.3
+        with:
+          org: "conda-forge"
+          package: "pangeo-dask"
 
       - name: Find and Replace pangeo-dask
         id: pangeodask
