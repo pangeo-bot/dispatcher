@@ -26,7 +26,7 @@ jobs:
 
       - name: Get latest dask version
         id: latest_version_dask
-        uses: jacobtomlinson/gha-anaconda-package-version@0.1.3
+        uses: jacobtomlinson/gha-anaconda-package-version@master
         with:
           org: "conda-forge"
           package: "dask"
@@ -41,7 +41,7 @@ jobs:
 
       - name: Get latest distributed version
         id: latest_version_distributed
-        uses: jacobtomlinson/gha-anaconda-package-version@0.1.3
+        uses: jacobtomlinson/gha-anaconda-package-version@master
         with:
           org: "conda-forge"
           package: "distributed"
@@ -56,7 +56,7 @@ jobs:
 
       - name: Get latest dask-gateway version
         id: latest_version_gateway
-        uses: jacobtomlinson/gha-anaconda-package-version@0.1.3
+        uses: jacobtomlinson/gha-anaconda-package-version@master
         with:
           org: "conda-forge"
           package: "dask-gateway"
