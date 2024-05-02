@@ -27,18 +27,18 @@ jobs:
       - name: Get Todays Date
         id: calver
         run: echo "::set-output name=version::$(date +'%Y.%m.%d')"
-
-      - name: Setup Micromamba
-        uses: mamba-org/provision-with-micromamba@v16
-        with:
-          environment-file: false
         
       # Until https://github.com/pangeo-bot/dispatcher/issues/7 fixed
-      - name: Get latest Pangeo-dask
-        id: latest_version_pangeodask
-        run: | 
-          VERSION=`micromamba repoquery search pangeo-dask -c conda-forge --json | jq -r '.result.pkgs[0].version'`
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+      # - name: Setup Micromamba
+      #   uses: mamba-org/provision-with-micromamba@v16
+      #   with:
+      #     environment-file: false
+          
+      # - name: Get latest Pangeo-dask
+      #   id: latest_version_pangeodask
+      #   run: | 
+      #     VERSION=`micromamba repoquery search pangeo-dask -c conda-forge --json | jq -r '.result.pkgs[0].version'`
+      #     echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Find and Replace pangeo-dask
         id: pangeodask
